@@ -20,14 +20,27 @@ body {
 }
 
 /* Прелоудер */
+div#preloader_cont { /* ФОН */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url(../PRELOADER/PRELOADER_STATIC.jpg);
+    background-size: 508px 160px;
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-position: center center;
+    visibility: hidden;
+}
 div#prelod_static_path {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 1016px;
-    height: 320px;
-    margin-left: -508px;
-    margin-top: -160px;
+    width: 508px;
+    height: 160px;
+    margin-left: -254px;
+    margin-top: -80px;
 }
 div#prelod_dynamic_path {
     position: absolute;
@@ -36,18 +49,7 @@ div#prelod_dynamic_path {
     width: 0%;
     height: 100%;
     background-image: url(../PRELOADER/PRELOADER_DYNAMIC.jpg);
-}
-div#preloader_cont {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-image: url(../PRELOADER/PRELOADER_STATIC.jpg);
-    background-color: #000;
-    background-repeat: no-repeat;
-    background-position: center center;
-    visibility: hidden;
+    background-size: 508px 160px;
 }
 
 /* Сплешскрин */
