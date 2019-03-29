@@ -7,6 +7,9 @@ var m_cfg       = require("config");
 var m_data      = require("data");
 var m_preloader = require("preloader");
 var m_ver       = require("version");
+var m_nla   = require("nla");
+var m_screen    = require("screen");
+var m_cont      = require("container");
 
 var DEBUG = (m_ver.type() == "DEBUG");
 
@@ -57,7 +60,16 @@ function preloader_cb(percentage) {
 //**************  START APPLICATION  *******************************************************************************
 function load_cb(data_id, success) {
 	if (!success) {console.log("b4w load failure"); return;}
-  m_app.enable_camera_controls();
+  m_nla.stop();
+	main_canvas_container.onclick 	= function() {   start_init() }
+}
+
+function start_init() {
+    m_screen.request_fullscreen(m_cont.get_container());
+    main_canvas_container.onclick 	= function() {
+      m_app.enable_camera_controls();
+      m_nla.play();      
+    }
 }
 //**************  FINISH APPLICATION  *************************************************************************
 
