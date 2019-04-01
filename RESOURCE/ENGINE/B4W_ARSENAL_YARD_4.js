@@ -68,7 +68,7 @@ function start_init() {
     m_screen.request_fullscreen(m_cont.get_container());
     main_canvas_container.onclick 	= function() {
       m_app.enable_camera_controls();
-      m_nla.play();      
+      m_nla.play();
     }
 }
 //**************  FINISH APPLICATION  *************************************************************************
