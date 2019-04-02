@@ -10,9 +10,6 @@ var m_ver       = require("version");
 var m_nla   = require("nla");
 var m_screen    = require("screen");
 var m_cont      = require("container");
-var m_logic   = require("logic_nodes");
-var m_scenes = require("scenes");
-var m_mouse = require("mouse");
 
 var DEBUG = (m_ver.type() == "DEBUG");
 
@@ -63,31 +60,16 @@ function preloader_cb(percentage) {
 //**************  START APPLICATION  *******************************************************************************
 function load_cb(data_id, success) {
 	if (!success) {console.log("b4w load failure"); return;}
-  //m_nla.stop();
-  splash_screen.style.display = 'block';
-	splash_screen.onclick 	= function() {   start_init() }
-  m_logic.run_entrypoint("Main_ARS", "EP_2");
-/*var canvas_elem = m_cont.get_canvas();
-canvas_elem.addEventListener("mousedown", main_canvas_click, false);
-  function main_canvas_click(e) {
-    var x = m_mouse.get_coords_x(e);
-    var y = m_mouse.get_coords_y(e);
-    var object_click = m_scenes.pick_object(x, y);
-    console.log(object_click);
-  }*/
-
+  m_nla.stop();
+	main_canvas_container.onclick 	= function() {   start_init() }
 }
 
 function start_init() {
     m_screen.request_fullscreen(m_cont.get_container());
-    splash_screen.style.display = 'none';
-    m_logic.run_entrypoint("Main_ARS", "EP_1");
-    /*var Rc_1_1_R = m_scenes.get_object_by_name("Rc_1_1_R");
-    var Rc_1_1_L = m_scenes.get_object_by_name("Rc_1_1_L");
-    m_scenes.apply_outline_anim(Rc_1_1_R, 3, 5);
-    m_scenes.apply_outline_anim(Rc_1_1_L, 3, 5);*/
+    main_canvas_container.onclick 	= function() {
       m_app.enable_camera_controls();
-      //m_nla.play();
+      m_nla.play();
+    }
 }
 //**************  FINISH APPLICATION  *************************************************************************
 
