@@ -21,6 +21,7 @@ var m_quat      = require("quat");
 var m_vec3      = require("vec3");
 var m_util      = require("util");
 var m_time      = require("time");
+var m_screen = require("screen");
 
 var DEBUG = (m_ver.type() == "DEBUG");
 
@@ -28,7 +29,7 @@ exports.init = function() {
     m_app.init({
         canvas_container_id: "main_canvas_container",
         callback: init_cb,
-        show_fps: true,
+        show_fps: false,
         console_verbose: DEBUG,
         //assets_dds_available: true,
         //assets_min50_available: true,
@@ -52,7 +53,7 @@ function init_cb(canvas_elem, success) {
 function load() {
 	var preloader_cont = document.getElementById("preloader_cont");
 			preloader_cont.style.visibility = "visible";
-			m_data.load("../RESOURCE/DATA/B4W_ARSENAL_INTERIOR.json", load_cb, preloader_cb);
+			m_data.load("RESOURCE/DATA/B4W_ARSENAL_INTERIOR.json", load_cb, preloader_cb);
 }
 
 function preloader_cb(percentage) {
@@ -70,7 +71,27 @@ function start_init(){
     splash_screen.style.display		= 'none';
 //		m_app.enable_camera_controls();
     m_fps.enable_fps_controls();
-	}
+
+// Выбор поддерживаемого метода FullScreen
+    function fullScreen(element) {
+      if(element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if(element.webkitrequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if(element.mozRequestFullscreen) {
+        element.mozRequestFullScreen();
+      }
+    }
+
+// Для всей страницы
+    var html = document.documentElement;
+    fullScreen(html);
+
+// Для конкретного канваса
+    //var canvas = document.getElementById('main_canvas_container');
+    //fullScreen(canvas);
+
+}
 
 //**************  START APPLICATION  *******************************************************************************
 function load_cb(data_id, success) {
